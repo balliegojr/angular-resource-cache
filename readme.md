@@ -27,6 +27,8 @@ Add resourceCacheModule as a requirement for your module
 angular.module('myApp', ['resourceCacheModule']);
 ```
 
+Use any of the services as cache system
+
 - **resourceCacheFactory** uses the cofigured cache system (resourceCacheAngular by default)
 - **resourceCacheSession** uses HTML5 sessionStorage
 - **resourceCacheLocal** uses HTML5 localStorage
