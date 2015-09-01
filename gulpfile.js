@@ -25,7 +25,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 gulp.task('build', ['jshint', 'karma'], function() {
 	return gulp.src('src/*.js')
-    	.pipe(concat('bCache.js'))
+    	.pipe(concat('resourceCache.js'))
     	.pipe(gulp.dest(dest))
     	.pipe(uglify())
     	.pipe(rename({ extname: '.min.js' }))

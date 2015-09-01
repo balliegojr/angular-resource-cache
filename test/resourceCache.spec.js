@@ -3,17 +3,17 @@
 (function() {
     'use strict';
 
-    describe('the bCacheModule', function() {
+    describe('the resourceCacheModule', function() {
 
-        beforeEach(module('bCacheModule'));
+        beforeEach(module('resourceCacheModule'));
         beforeEach(module(function($provide) {
             $provide.service('$window', function() { });
         }));
 
-        describe('the bCacheSession', function() {
+        describe('the resourceCacheSession', function() {
             var service, $window;
 
-            beforeEach(inject(['bCacheSession', '$window', function(cacheSession, _$window_) {
+            beforeEach(inject(['resourceCacheSession', '$window', function(cacheSession, _$window_) {
                 service = cacheSession;
                 $window = _$window_;
                 $window.sessionStorage = {};
@@ -98,10 +98,10 @@
             });
         });
 
-        describe('the bCacheLocal', function() {
+        describe('the resourceCacheLocal', function() {
             var service, $window;
 
-            beforeEach(inject(['bCacheLocal', '$window',function(cacheLocal, _$window_) {
+            beforeEach(inject(['resourceCacheLocal', '$window',function(cacheLocal, _$window_) {
                 service = cacheLocal;
                 $window = _$window_;
                 $window.localStorage = {};
@@ -185,10 +185,10 @@
             });
         });
 
-        describe('the bCacheAngular', function() {
+        describe('the resourceCacheAngular', function() {
             var service, cache;
 
-            beforeEach(inject(['bCacheAngular', '$cacheFactory', function(cacheService, $cacheFactory) {
+            beforeEach(inject(['resourceCacheAngular', '$cacheFactory', function(cacheService, $cacheFactory) {
                 service = cacheService;
                 cache = $cacheFactory.get('general');
                 cache.removeAll();
@@ -271,25 +271,25 @@
         });
 
 
-        describe('the bCacheFactory', function() {
+        describe('the resourceCacheFactory', function() {
             var factoryProvider, factory;
             
 
             describe('', function() {
-                beforeEach(module(['bCacheFactoryProvider', function(bCacheFactoryProvider) {
-                    factoryProvider = bCacheFactoryProvider;
+                beforeEach(module(['resourceCacheFactoryProvider', function(resourceCacheFactoryProvider) {
+                    factoryProvider = resourceCacheFactoryProvider;
                 }]));
                 beforeEach(inject(function() {
                     
                 }));
-                describe('define a bCacheSystem method that', function() {
+                describe('define a resourceCacheSystem method that', function() {
 
                     it('should be defined', function() {
-                        expect(factoryProvider.bCacheSystem).toBeDefined();
+                        expect(factoryProvider.resourceCacheSystem).toBeDefined();
                     });
                     it('should accept a valid option', function() {
-                        factoryProvider.bCacheSystem(factoryProvider.cacheSystems.session);
-                        var fn = function(){ factoryProvider.bCacheSystem('invalid'); };
+                        factoryProvider.resourceCacheSystem(factoryProvider.cacheSystems.session);
+                        var fn = function(){ factoryProvider.resourceCacheSystem('invalid'); };
 
                         expect(fn).toThrow();
                     });
@@ -297,22 +297,22 @@
                 });
 
 
-                it('should return the default bCacheAngular instance', inject(['bCacheFactory', 'bCacheAngular', function(factory, cacheAngular) {
-                    expect(factoryProvider.bCacheSystem()).toBeUndefined();
+                it('should return the default resourceCacheAngular instance', inject(['resourceCacheFactory', 'resourceCacheAngular', function(factory, cacheAngular) {
+                    expect(factoryProvider.resourceCacheSystem()).toBeUndefined();
                     expect(factory).toBe(cacheAngular);
-                    expect(factory.$type).toBe('bCacheAngular');
+                    expect(factory.$type).toBe('resourceCacheAngular');
                 }]));
             });
 
             describe('when configurated', function() {
-                beforeEach(module(['bCacheFactoryProvider', function(bCacheFactoryProvider) {
-                    factoryProvider = bCacheFactoryProvider;
-                    factoryProvider.bCacheSystem(factoryProvider.cacheSystems.session);
+                beforeEach(module(['resourceCacheFactoryProvider', function(resourceCacheFactoryProvider) {
+                    factoryProvider = resourceCacheFactoryProvider;
+                    factoryProvider.resourceCacheSystem(factoryProvider.cacheSystems.session);
                 }]));
                 
-                it('should return the defined provider', inject(['bCacheFactory', 'bCacheSession', function(factory, cacheSession) {
+                it('should return the defined provider', inject(['resourceCacheFactory', 'resourceCacheSession', function(factory, cacheSession) {
                     expect(factory).toBe(cacheSession);
-                    expect(factory.$type).toBe('bCacheSession');
+                    expect(factory.$type).toBe('resourceCacheSession');
                 }]));
             });
         });

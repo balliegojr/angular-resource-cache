@@ -3,8 +3,8 @@
 (function(){
     'use strict';
 
-    angular.module('bCacheModule', [])
-        .service('bCacheSession', ['$q', '$window', function($q, $window){
+    angular.module('resourceCacheModule', [])
+        .service('resourceCacheSession', ['$q', '$window', function($q, $window){
             this.get = function(key, fallback){
                 var def = $q.defer();
                 var data;
@@ -42,7 +42,7 @@
                 $window.sessionStorage.clear();
             };
         }])
-        .service('bCacheLocal', ['$q','$window', function($q,$window){
+        .service('resourceCacheLocal', ['$q','$window', function($q,$window){
             this.get = function(key, fallback){
                 var def = $q.defer();
 
@@ -80,7 +80,7 @@
                 $window.localStorage.clear();
             };
         }])
-        .service('bCacheAngular', ['$q', '$cacheFactory', function($q, $cacheFactory){
+        .service('resourceCacheAngular', ['$q', '$cacheFactory', function($q, $cacheFactory){
             
             var cache = $cacheFactory('general');
             // eventDispatcher.subscribe('Auth.LoggedIn', function(){
@@ -132,14 +132,14 @@
             };
 
         }])
-        .provider('bCacheFactory', [function(){
+        .provider('resourceCacheFactory', [function(){
             this.cacheSystems = {
-                session: 'bCacheSession',
-                local: 'bCacheLocal',
-                angular: 'bCacheAngular'
+                session: 'resourceCacheSession',
+                local: 'resourceCacheLocal',
+                angular: 'resourceCacheAngular'
             };
             var defaultCache;
-            this.bCacheSystem = function(cache){
+            this.resourceCacheSystem = function(cache){
                 if (cache === undefined){
                     return defaultCache;
                 } 
