@@ -1,6 +1,6 @@
 # angular-resourceCache
 
-An [angular](https://github.com/angular/angular.js) without the dependency of **$scope** module to cache $resource or promise like objects
+An [angular](https://github.com/angular/angular.js) module to cache $resource or promise like objects
 
 ## Runing tests
 ```
